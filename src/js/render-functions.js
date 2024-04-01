@@ -1,4 +1,6 @@
-import { gallery, lightbox } from '../main';
+import { gallery, lightbox, currentPage, myScroll, showLoadMore } from '../main';
+
+import { amountOfHits } from './pixabay-api';
 
 export function renderPhotos(images) {                        
   const markup = images                          
@@ -23,6 +25,21 @@ export function renderPhotos(images) {
     })
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
-
   lightbox.refresh();
+  if (amountOfHits < currentPage * 15) {
+    iziToast.show({
+      color: 'red',
+      message: `We're sorry, but you've reached the end of search results.`,
+      position: 'topRight',
+    });
+  } else if (amountOfHits < 15) {
+    iziToast.show({
+      color: 'red',
+      message: `We're sorry, but you've reached the end of search results.`,
+      position: 'topRight',
+    });
+  } else {
+    showLoadMore();
+    myScroll();
+  }
 }
