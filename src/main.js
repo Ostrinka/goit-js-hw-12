@@ -12,12 +12,10 @@ const button = document.querySelector('.btn');
 export const gallery = document.querySelector('.gallery');   
 const loaderItem = document.querySelector('.loader-item');
 const btnLoad = document.querySelector('.btn-load')  
-const targetElem = document.querySelector('.target')
+
 
 export let inputUser = "";
 export let currentPage = 1;
-let maxPage;
-const pageSize = 15;
 
 export const lightbox = new SimpleLightbox('.gallery a', {  
   captionDelay: 250,
@@ -28,14 +26,23 @@ button.addEventListener('click', event => {
   event.preventDefault();
   loaderOpen();
   gallery.innerHTML = '';
-  setTimeout(() => {
   inputUser = inputForm.value.trim();
   checkInput();
-  }, 1000);
+  inputForm.value = '';
+  event.target.reset();
 });
 
+export function addButtonLoad() {
+  btnLoad.addEventListener('click', event => {
+  event.preventDefault();
+  checkInput();
+  hideLoadMore();
+  currentPage += 1;
+});
+}
+
 function checkInput() {     
-  getImage()
+  return getImage()
     .then(images => {
       if (inputUser === "") {
         iziToast.show({
@@ -72,16 +79,9 @@ function loaderDel() {
 export function showLoadMore() {
   btnLoad.classList.remove('hidden');
 }
+
 function hideLoadMore() {
   btnLoad.classList.add('hidden');
-}
-
-function checkBtnStatus() {
-  if (currentPage >= maxPage) {
-    hideLoadMore();
-  } else {
-    showLoadMore();
-  }
 }
 
 export function myScroll() {
