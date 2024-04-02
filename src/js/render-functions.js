@@ -26,17 +26,21 @@ export function renderPhotos(images) {
   gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
   if (amountOfHits < currentPage * 15) {
+    
     iziToast.show({
       color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
       position: 'topRight',
-    });
+    })
+      
   } else if (amountOfHits < 15) {
+    
     iziToast.show({
       color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
       position: 'topRight',
-    });
+    })
+      
   } else {
     showLoadMore();
     addButtonLoad();

@@ -37,8 +37,8 @@ export function addButtonLoad() {
   btnLoad.addEventListener('click', event => {
   event.preventDefault();
   currentPage += 1;
-  checkInput().then(() => myScroll());;
-    showLoadMore();
+  checkInput().then(() => myScroll());
+  showLoadMore();
   });
 }
 
@@ -79,7 +79,7 @@ export function showLoadMore() {
   btnLoad.classList.remove('hidden');
 }
 
-function hideLoadMore() {
+export function hideLoadMore() {
   btnLoad.classList.add('hidden');
 }
 
