@@ -2,11 +2,10 @@ import { gallery, lightbox, currentPage, myScroll, showLoadMore, addButtonLoad }
 
 import { amountOfHits } from './pixabay-api';
 
-export function renderPhotos(images) {                        
-  const markup = images                          
+export function renderPhotos(images) {
+  const markup = images
     .map(image => {
-      console.log(image);
-      return `<li class="gallery-item">
+          return `<li class="gallery-item">
           <a class="gallery-link" href="${image.largeImageURL}">
             <img
                class="gallery-image"
@@ -28,13 +27,13 @@ export function renderPhotos(images) {
   lightbox.refresh();
   if (amountOfHits < currentPage * 15) {
     iziToast.show({
-      color: 'red',
+      color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
       position: 'topRight',
     });
   } else if (amountOfHits < 15) {
     iziToast.show({
-      color: 'red',
+      color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
       position: 'topRight',
     });

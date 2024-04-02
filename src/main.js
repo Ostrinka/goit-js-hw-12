@@ -26,20 +26,23 @@ button.addEventListener('click', event => {
   event.preventDefault();
   loaderOpen();
   gallery.innerHTML = '';
+  if (inputUser !== inputForm.value.trim()) {
+    currentPage = 1;
+  }
   inputUser = inputForm.value.trim();
   checkInput();
   inputForm.value = '';
-  event.target.reset();
 });
 
 export function addButtonLoad() {
   btnLoad.addEventListener('click', event => {
   event.preventDefault();
+  currentPage += 1;
   checkInput();
   hideLoadMore();
-  currentPage += 1;
-});
+ });
 }
+
 
 function checkInput() {     
   return getImage()
@@ -64,17 +67,14 @@ function checkInput() {
     .finally(() => loaderDel());
 }
 
-function loaderOpen() {                                
-  const spanElement = document.createElement('span');
-  loaderItem.appendChild(spanElement);
-  spanElement.classList.add('loader');
+
+function loaderOpen() {
+  loaderItem.classList.remove('hidden');
 }
 
-function loaderDel() {                          
-  const loader = document.querySelector('.loader');
-  loader.remove();
+function loaderDel() {
+  loaderItem.classList.add('hidden');
 }
-
 
 export function showLoadMore() {
   btnLoad.classList.remove('hidden');
@@ -85,12 +85,14 @@ function hideLoadMore() {
 }
 
 export function myScroll() {
-  const firstChild = gallery.firstChild;
-  if (firstChild) {
-    const height = firstChild.getBoundingClientRect().height;
+    const height = gallery.firstChild.getBoundingClientRect().height;
     window.scrollBy({
       top: height * 2,
       behavior: 'smooth',
     });
   }
-}
+
+
+
+
+
