@@ -15,7 +15,7 @@ const btnLoad = document.querySelector('.btn-load')
 
 
 export let inputUser = "";
-export let currentPage = 1;
+export let currentPage;
 
 export const lightbox = new SimpleLightbox('.gallery a', {  
   captionDelay: 250,
@@ -25,11 +25,11 @@ export const lightbox = new SimpleLightbox('.gallery a', {
 button.addEventListener('click', event => {   
   event.preventDefault();
   currentPage = 1;
+  hideLoadMore();
   gallery.innerHTML = '';
   inputUser = inputForm.value.trim();
   loaderOpen();
   checkInput();
-  showLoadMore();
   inputForm.value = '';
 });
 
@@ -60,6 +60,7 @@ function checkInput() {
         });
       } else {
         renderPhotos(images);
+        
       }
     })
     .catch(error => console.log(error))
@@ -90,8 +91,6 @@ function myScroll() {
       behavior: 'smooth',
     });
   }
-
-
 
 
 

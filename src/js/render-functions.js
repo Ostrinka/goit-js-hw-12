@@ -25,8 +25,9 @@ export function renderPhotos(images) {
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
-  if (amountOfHits < currentPage * 15) {
-    
+
+  if (amountOfHits < (currentPage * 15)) {
+    hideLoadMore();
     iziToast.show({
       color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
@@ -34,7 +35,7 @@ export function renderPhotos(images) {
     })
       
   } else if (amountOfHits < 15) {
-    
+    hideLoadMore();
     iziToast.show({
       color: '#EF4040',
       message: `We're sorry, but you've reached the end of search results.`,
@@ -44,5 +45,6 @@ export function renderPhotos(images) {
   } else {
     showLoadMore();
     addButtonLoad();
+    
   }
 }
