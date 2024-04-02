@@ -1,4 +1,4 @@
-import { gallery, lightbox, currentPage, myScroll, showLoadMore, addButtonLoad } from '../main';
+import { gallery, lightbox, currentPage, showLoadMore, addButtonLoad } from '../main';
 
 import { amountOfHits } from './pixabay-api';
 
@@ -40,6 +40,5 @@ export function renderPhotos(images) {
   } else {
     showLoadMore();
     addButtonLoad();
-    myScroll();
   }
 }

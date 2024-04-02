@@ -24,13 +24,12 @@ export const lightbox = new SimpleLightbox('.gallery a', {
 
 button.addEventListener('click', event => {   
   event.preventDefault();
-  loaderOpen();
+  currentPage = 1;
   gallery.innerHTML = '';
-  if (inputUser !== inputForm.value.trim()) {
-    currentPage = 1;
-  }
   inputUser = inputForm.value.trim();
+  loaderOpen();
   checkInput();
+  showLoadMore();
   inputForm.value = '';
 });
 
@@ -38,9 +37,9 @@ export function addButtonLoad() {
   btnLoad.addEventListener('click', event => {
   event.preventDefault();
   currentPage += 1;
-  checkInput();
-  hideLoadMore();
- });
+  checkInput().then(() => myScroll());;
+    showLoadMore();
+  });
 }
 
 
@@ -84,7 +83,7 @@ function hideLoadMore() {
   btnLoad.classList.add('hidden');
 }
 
-export function myScroll() {
+function myScroll() {
     const height = gallery.firstChild.getBoundingClientRect().height;
     window.scrollBy({
       top: height * 2,
